@@ -1,0 +1,155 @@
+:root{
+  --bg: white;
+  --fg: black;
+}
+
+html, body {
+  background: var(--bg, white); color: var(--fg, black);
+  transition: background-color 0.4s;
+  height: 100%;
+  margin: 0; padding: 0;
+}
+
+section {
+  --bg: grey;
+  --fg: white;
+  background: var(--bg, grey); color: var(--fg, black);
+}
+
+h1 {
+  text-align: center;
+}
+
+p {
+  font-family: verdana;
+  font-size: 20px;
+}
+
+img { 
+  max-width: 100%; 
+  height: auto; 
+  display: block; 
+}
+
+button {
+  border-radius: 5px;
+
+}
+
+button:hover {
+  background-color: black;
+  color: white;
+}
+
+#rand-color {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+#reset-color {
+  z-index: 1000;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+#rand-color-home {
+  z-index: 1000;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.hero-image {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/assets/images/keanu4.jpg");
+  height: 50%;
+  background-position: 0% 30%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.hero-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+nav[aria-label="primary"] a[aria-current="page"]{
+  font-weight: 600;
+}
+
+nav[aria-label="primary"] {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#nav-rail {
+  --tab-hover-bg: rgb(203, 203, 203);
+  --tab-hover-fg: black;
+  --tab-active-bg: white;
+  --tab-active-fg: black;
+  --tab-border-width: 2px;
+  --tab-border-color: black;
+  --tab-radius: 10px;
+  --tab-gap: 0.5rem;
+  --tab-height: 2.5rem;
+
+  position: relative;
+  align-content: center;
+  display: flex;
+  top: 0;
+  z-index: 1000;
+  padding-bottom: 4px;
+
+  min-height: 30px;
+  margin-top: 0;
+}
+
+.tab+.tab {
+  border-left: 1px solid var(--fg);
+}
+
+.tab:last-child {
+  border-right: 1px solid var(--fg);
+}
+
+.tab:first-child {
+  border-left: 1px solid var(--fg);
+}
+
+.tab {
+  color: var(--fg);
+  display: inline-flex;
+  margin: 0;
+
+  align-items: center;
+  line-height: 1;
+  padding-inline: 0.6rem;
+  padding-block: 0.4rem;  
+/* 
+  min-width: 40px;
+  min-height: 30px; */
+  border-bottom: 1px solid var(--fg);
+
+  font-family: verdana;
+  font-size: 20px;
+}
+
+.tab:hover {
+  background: var(--tab-hover-bg); color: var(--tab-hover-fg);
+}
+
+a:link {
+  text-decoration: none;
+}
