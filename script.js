@@ -1,4 +1,5 @@
 const doomSong = loadAudio('assets/audio/ripandtear.mp3', {loop: true, volume: 0.3});
+
 if (document.body.getAttribute("data-page") == "doom") {
     autoplay(doomSong);
 }
@@ -7,11 +8,21 @@ if (document.body.getAttribute("data-page") == "doom") {
 document.getElementById('rand-color')?.addEventListener('click',changeBackgroundColor);
 document.getElementById('rand-color-home')?.addEventListener('click',changeBackgroundColor);
 document.getElementById('reset-color')?.addEventListener('click', resetBackgroundColor);
+
+initTheme();
+
+// Spotlight values and function calls
+const SPOT_SCOPE = document.getElementById("spotlight");
+let _rafId = 0;
+let _lastX = -9999, _lastY = -9999;
+let _onMove = null;
+enableSpotlight();
+setSpotRadius(400);
+setSpotHardness(0.2);
 // document.addEventListener('DOMContentLoaded', () => {
 //   wireDropdown('#tab-random');
 //   wireDropdown('#tab-links');
 // });
-initTheme();
 
 function changeBackgroundColor() {
     getRandomColor();
@@ -113,6 +124,8 @@ function initTheme() {
 
     setCSSVar("--tab-hover-bg",hs,document.getElementById("nav-rail"));
     setCSSVar("--tab-hover-fg",hsLum,document.getElementById("nav-rail"));  
+
+    setCSSVar("--spot-color", hs, document.getElementById("spotlight"));
 }
 
 function loadAudio(src, {loop=true, volume=0.5}) {
@@ -178,4 +191,55 @@ function wireDropdown(currentContainer) {
         if (e.key === "Escape") closeOpenContainer(container);
     });
 }
-// End of Click-to-dropdown functions
+// End of click-to-dropdown functions
+
+// Functions to produce a spotlight effect following the cursor.
+function enableSpotlight() {
+    if (_onMove) return;
+    _onMove = (e) => {
+        _lastX = e.clientX;
+        _lastY = e.clientY;
+        if (!_rafId) _rafId = requestAnimationFrame(_flushSpotlight);
+    };
+
+    document.addEventListener("pointermove", _onMove, {
+        passive: true
+    });
+}
+
+function disableSpotlight() {
+    if(_onMove) {
+        document.removeEventListener("pointermove", _onMove);
+        _onMove = null;
+    }
+    if(_rafId) {
+        _rafId = 0;
+    }
+    setCSSVar('--spot-r', '0px', SPOT_SCOPE);
+    setCSSVar('--spot-x', '-9999px', SPOT_SCOPE);
+    setCSSVar('--spot-y', '-9999px', SPOT_SCOPE);
+    
+}
+
+function _flushSpotlight() {
+    _rafId = 0;
+    setCSSVar('--spot-x', _lastX + 'px', SPOT_SCOPE);
+    setCSSVar('--spot-y', _lastY + 'px', SPOT_SCOPE);
+}
+
+function setSpotRadius(px) {
+    setCSSVar('--spot-r', (px|0) + 'px', SPOT_SCOPE);
+}
+
+// function setSpotColor() {
+
+// }
+
+function setSpotHardness(hd) {
+    const core = 0.55 - 0.35 * (1-hd);
+    const feather = 0.6 - 0.4 * hd;
+    setCSSVar('--spot-core', core, SPOT_SCOPE);
+    setCSSVar('--spot-feather', feather, SPOT_SCOPE);
+}
+
+// End of spotlight functions

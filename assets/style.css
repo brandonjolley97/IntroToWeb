@@ -13,6 +13,7 @@ html, body {
 section {
   --bg: grey;
   --fg: white;
+  z-index: 500;
   background: var(--bg, grey); color: var(--fg, black);
 }
 
@@ -29,6 +30,7 @@ img {
   max-width: 100%; 
   height: auto; 
   display: block; 
+  z-index: 500;
 }
 
 button {
@@ -39,6 +41,29 @@ button {
 button:hover {
   background-color: black;
   color: white;
+}
+
+#spotlight {
+  --spot-x: -9999px;
+  --spot-y: -9999px;
+  --spot-r: 100px;
+  --spot-color: rgb(203, 203, 203);
+  --spot-core: 0.3;
+  --spot-clear: var(--spot-color) / 0.18;
+  --spot-feather: 0.5;
+  --spot-hardness: 0.2;
+
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 900;
+  background-repeat: no-repeat;
+  background-image: radial-gradient(
+    circle at var(--spot-x) var(--spot-y), 
+    var(--spot-color) 0,
+    var(--spot-color) calc(var(--spot-r) * var(--spot-core)), 
+    var(--spot-clear) calc(var(--spot-r) * (1 + var(--spot-feather)))
+  );
 }
 
 #rand-color {
@@ -105,6 +130,7 @@ nav[aria-label="primary"] {
   --tab-radius: 10px;
   --tab-gap: 0.5rem;
   --tab-height: 2.5rem;
+  --menu-width: 15rem;
 
   position: relative;
   align-content: center;
@@ -115,6 +141,11 @@ nav[aria-label="primary"] {
 
   min-height: 30px;
   margin-top: 0;
+}
+
+#nav-rail .menu {
+  box-sizing: border-box;
+  inline-size: var(--menu-width);
 }
 
 #nav-rail .menu > a,
@@ -165,19 +196,16 @@ nav[aria-label="primary"] {
   font-size: 20px;
 }
 
-#tab-random {
-  position: relative;
-}
-
-#tab-links {
-  position: relative;
-}
-
 .menu {
   position: absolute;
   top: 100%;
   left: 0;
   display: none;
+}
+
+#tab-random,
+#tab-links {
+  position: relative;
 }
 
 #tab-links .menu,
@@ -197,14 +225,12 @@ nav[aria-label="primary"] {
 }
 
 #tab-links.is-open .menu,
-#tab-links:hover .menu { 
-  display: block; 
-}
-
+#tab-links:hover .menu,
 #tab-random.is-open .menu,
 #tab-random:hover .menu { 
   display: block; 
 }
+
 
 #tab-random .menu > a,
 #tab-random .menu > button,
