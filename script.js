@@ -7,6 +7,10 @@ if (document.body.getAttribute("data-page") == "doom") {
 document.getElementById('rand-color')?.addEventListener('click',changeBackgroundColor);
 document.getElementById('rand-color-home')?.addEventListener('click',changeBackgroundColor);
 document.getElementById('reset-color')?.addEventListener('click', resetBackgroundColor);
+// document.addEventListener('DOMContentLoaded', () => {
+//   wireDropdown('#tab-random');
+//   wireDropdown('#tab-links');
+// });
 initTheme();
 
 function changeBackgroundColor() {
@@ -132,3 +136,46 @@ function getCSSVar(name, scope = document.documentElement) {
     return getComputedStyle(scope).getPropertyValue(name).trim();
 }
 
+
+// These handle clicking to open and close a dropdown, which is currently not being used.
+function toggleOpenContainer(container) {
+    const open = container.classList.toggle('is-open');
+    const label = container.querySelector('.tab-label');
+    if (label) label.setAttribute('aria-expanded', String(open));
+    return open;
+}
+
+function closeOpenContainer(container) {
+    if (!container.classList.contains('is-open')) return;
+    container.classList.remove('is-open');
+    const label = container.querySelector('.tab-label');
+    if (label) label.setAttribute('aria-expanded', String(false));
+}
+
+function closeOtherContainers(currentContainer = '') {
+    document.querySelectorAll('.tab.is-open').forEach(item => {
+        if (!currentContainer || !item.matches(currentContainer)) closeOpenContainer(item);
+    });
+}
+
+function wireDropdown(currentContainer) {
+    const container = document.querySelector(currentContainer);
+    if (!container) return;
+    const label = container.querySelector('.tab-label');
+    if (!label) return;
+
+    label.addEventListener('click', (e) => {
+        if (label.tagName === "A") e.preventDefault();
+        closeOtherContainers(currentContainer);
+        toggleOpenContainer(container);
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!container.contains(e.target)) closeOpenContainer(container);
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === "Escape") closeOpenContainer(container);
+    });
+}
+// End of Click-to-dropdown functions

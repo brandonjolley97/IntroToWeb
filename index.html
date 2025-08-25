@@ -20,15 +20,32 @@
             <a href="/projects.html" class="tab">Projects</a>
             <a href="/about.html" class="tab">About</a>
             <a href="/doom.html" class="tab">DOOOOOOM!</a>
+            
+            <div id="tab-random" class="tab"> <!-- is-open class will be added and removed in .js -->
+                <a href="#" type="button" class="tab-label" aria-haspopup="menu" aria-expanded="false">
+                    Random ▾
+                </a>
+                <div class="menu" role="menu">
+                    <button id="rand-color-home" type="button">Random Color</button>
+                    <button id="reset-color">Reset Color</button>
+                </div>
+            </div>
+            <div id="tab-links" class="tab"> <!-- is-open class will be added and removed in .js -->
+                <a href="#" type="button" class="tab-label" aria-haspopup="menu" aria-expanded="false">
+                    Links ▾
+                </a>
+                <div class="menu" role="menu">
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference" class="menu-item" target="_blank">ARIA</a>
+                    <a href="https://www.w3schools.com/html/" class="menu-item" target="_blank">W3</a>
+                </div>
+            </div>
         </nav>
     </header>
 
     <div class="hero-image">
         <div class="hero-text">
             <h1 id="home-header">Hey, I'm Brandon</h1>
-            <p id="home-paragraph">And I'm a Programmer</p>
-            <button id="rand-color-home" type="button">Random Color</button>
-            <button id="reset-color">Reset Color</button>
+            <p id="home-paragraph">And I'm a Software Engineer</p>
         </div>
     </div>
 

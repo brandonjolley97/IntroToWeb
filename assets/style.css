@@ -80,6 +80,7 @@ button:hover {
   color: white;
 }
 
+/* Start Nav Rail Stuff */
 nav[aria-label="primary"] a[aria-current="page"]{
   font-weight: 600;
 }
@@ -116,6 +117,16 @@ nav[aria-label="primary"] {
   margin-top: 0;
 }
 
+#nav-rail .menu > a,
+#nav-rail .menu > button {
+  background: var(--bg); color: var(--fg);
+}
+
+#nav-rail .menu > a:hover,
+#nav-rail .menu > button:hover {
+  background: var(--tab-hover-bg); color: var(--tab-hover-fg);
+}
+
 .tab+.tab {
   border-left: 1px solid var(--fg);
 }
@@ -129,7 +140,7 @@ nav[aria-label="primary"] {
 }
 
 .tab {
-  color: var(--fg);
+  background: var(--bg); color: var(--fg);
   display: inline-flex;
   margin: 0;
 
@@ -137,9 +148,6 @@ nav[aria-label="primary"] {
   line-height: 1;
   padding-inline: 0.6rem;
   padding-block: 0.4rem;  
-/* 
-  min-width: 40px;
-  min-height: 30px; */
   border-bottom: 1px solid var(--fg);
 
   font-family: verdana;
@@ -150,6 +158,90 @@ nav[aria-label="primary"] {
   background: var(--tab-hover-bg); color: var(--tab-hover-fg);
 }
 
+.tab-label {
+  color: var(--fg);
+
+  font-family: verdana;
+  font-size: 20px;
+}
+
+#tab-random {
+  position: relative;
+}
+
+#tab-links {
+  position: relative;
+}
+
+.menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: none;
+}
+
+#tab-links .menu,
+#tab-random .menu {
+  display: none;
+}
+
+#tab-links:hover .menu,
+#tab-links:focus-within .menu,
+#tab-random .menu,
+#tab-random:focus-within .menu {
+  position: absolute; top: 100%; left: 0;
+  display: none;
+  background: var(--bg);
+  border: 1px solid var(--fg);
+  border-top: none;
+}
+
+#tab-links.is-open .menu,
+#tab-links:hover .menu { 
+  display: block; 
+}
+
+#tab-random.is-open .menu,
+#tab-random:hover .menu { 
+  display: block; 
+}
+
+#tab-random .menu > a,
+#tab-random .menu > button,
+#tab-links  .menu > a,
+#tab-links  .menu > button {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: .5rem .75rem;
+  text-align: left;
+}
+
+.is-open {
+  position: relative;
+}
+
+.is-open .menu {
+  position: absolute; top: 100%; left: 0;
+
+  min-width: 20rem;
+  border-bottom: 0;
+  border-top: 0;
+
+  overflow: hidden;
+}
+
+.is-open .menu > a,
+.is-open .menu > button {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  border-bottom: 0;
+}
+
+/* End Nav Rail Stuff */
+
 a:link {
   text-decoration: none;
 }
+

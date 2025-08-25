@@ -16,15 +16,31 @@
 <body data-page="doom">
     <header id="nav-rail">
         <nav aria-label="primary">
-            <a href="/index.html" class="tab">Home</a>
+            <a href="/index.html" class="tab">Home</a> <!-- Use aria-current to label/denote a particular element in a nav bar -->
             <a href="/projects.html" class="tab">Projects</a>
             <a href="/about.html" class="tab">About</a>
             <a href="/doom.html" aria-current="page" class="tab">DOOOOOOM!</a>
+            
+            <div id="tab-random" class="tab"> <!-- is-open class will be added and removed in .js -->
+                <a href="#" type="button" class="tab-label" aria-haspopup="menu" aria-expanded="false">
+                    Random ▾
+                </a>
+                <div class="menu" role="menu">
+                    <button id="rand-color-home" type="button">Random Color</button>
+                    <button id="reset-color">Reset Color</button>
+                </div>
+            </div>
+            <div id="tab-links" class="tab"> <!-- is-open class will be added and removed in .js -->
+                <a href="#" type="button" class="tab-label" aria-haspopup="menu" aria-expanded="false">
+                    Links ▾
+                </a>
+                <div class="menu" role="menu">
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference" class="menu-item" target="_blank">ARIA</a>
+                    <a href="https://www.w3schools.com/html/" class="menu-item" target="_blank">W3</a>
+                </div>
+            </div>
         </nav>
     </header>
-    
-    <button id="rand-color" type="button">Random Color</button>
-    <button id="reset-color">Reset Color</button>
 
     <h1 id="doom-header">DOOM</h1>
     <p id="doom-paragraph">What a great game!</p>
