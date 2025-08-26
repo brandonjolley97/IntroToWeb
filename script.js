@@ -9,20 +9,34 @@ document.getElementById('rand-color')?.addEventListener('click',changeBackground
 document.getElementById('rand-color-home')?.addEventListener('click',changeBackgroundColor);
 document.getElementById('reset-color')?.addEventListener('click', resetBackgroundColor);
 
-initTheme();
+
 
 // Spotlight values and function calls
-const SPOT_SCOPE = document.getElementById("spotlight");
 let _rafId = 0;
 let _lastX = -9999, _lastY = -9999;
 let _onMove = null;
-enableSpotlight();
-setSpotRadius(400);
-setSpotHardness(0.2);
+
+// SPOT_SCOPE = document.getElementById('spotlight');
+
+// setSpotRadius(400);
+// setSpotHardness(0.2);
+// enableSpotlight();
+
+document.addEventListener('DOMContentLoaded', () => {
+    SPOT_SCOPE = document.getElementById('spotlight');
+
+    setSpotRadius(400);
+    setSpotHardness(0.2);
+    enableSpotlight();
+});
+
+
 // document.addEventListener('DOMContentLoaded', () => {
 //   wireDropdown('#tab-random');
 //   wireDropdown('#tab-links');
 // });
+
+initTheme();
 
 function changeBackgroundColor() {
     getRandomColor();
@@ -123,9 +137,9 @@ function initTheme() {
     });
 
     setCSSVar("--tab-hover-bg",hs,document.getElementById("nav-rail"));
-    setCSSVar("--tab-hover-fg",hsLum,document.getElementById("nav-rail"));  
+    setCSSVar("--tab-hover-fg",hsLum,document.getElementById("nav-rail"));
 
-    setCSSVar("--spot-color", hs, document.getElementById("spotlight"));
+    setSpotColor(hs);
 }
 
 function loadAudio(src, {loop=true, volume=0.5}) {
@@ -231,9 +245,14 @@ function setSpotRadius(px) {
     setCSSVar('--spot-r', (px|0) + 'px', SPOT_SCOPE);
 }
 
-// function setSpotColor() {
-
-// }
+function setSpotColor(c) {
+    const m = String(c).match(/\d+/g);
+    if (m && m.length >= 3) {
+        const [r,g,b] = m.map(Number);
+        setCSSVar('--spot-color', `rgb(${r} ${g} ${b} / 0.18)`, SPOT_SCOPE);
+        setCSSVar('--spot-clear', `rgb(${r} ${g} ${b} / 0)`, SPOT_SCOPE);
+    }
+}
 
 function setSpotHardness(hd) {
     const core = 0.55 - 0.35 * (1-hd);
