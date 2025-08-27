@@ -64,6 +64,7 @@ button:hover {
     var(--spot-color) calc(var(--spot-r) * var(--spot-core)), 
     var(--spot-clear) calc(var(--spot-r) * (1 + var(--spot-feather)))
   );
+  /* background-image: radial-gradient(circle at var(--spot-x) var(--spot-y), blue 0, red 0)  */
 }
 
 #rand-color {

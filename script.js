@@ -16,19 +16,19 @@ let _rafId = 0;
 let _lastX = -9999, _lastY = -9999;
 let _onMove = null;
 
-// SPOT_SCOPE = document.getElementById('spotlight');
+const SPOT_SCOPE = document.getElementById('spotlight');
 
-// setSpotRadius(400);
-// setSpotHardness(0.2);
-// enableSpotlight();
+setSpotRadius(400);
+setSpotHardness(0.3);
+enableSpotlight();
 
-document.addEventListener('DOMContentLoaded', () => {
-    SPOT_SCOPE = document.getElementById('spotlight');
+// document.addEventListener('DOMContentLoaded', () => {
+//     // SPOT_SCOPE = document.getElementById('spotlight');
 
-    setSpotRadius(400);
-    setSpotHardness(0.2);
-    enableSpotlight();
-});
+//     setSpotRadius(400);
+//     setSpotHardness(0.2);
+//     enableSpotlight();
+// });
 
 
 // document.addEventListener('DOMContentLoaded', () => {
@@ -249,7 +249,7 @@ function setSpotColor(c) {
     const m = String(c).match(/\d+/g);
     if (m && m.length >= 3) {
         const [r,g,b] = m.map(Number);
-        setCSSVar('--spot-color', `rgb(${r} ${g} ${b} / 0.18)`, SPOT_SCOPE);
+        setCSSVar('--spot-color', `rgb(${r} ${g} ${b} / 0.38)`, SPOT_SCOPE);
         setCSSVar('--spot-clear', `rgb(${r} ${g} ${b} / 0)`, SPOT_SCOPE);
     }
 }
