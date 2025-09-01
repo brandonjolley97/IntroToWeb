@@ -5,9 +5,9 @@ if (document.body.getAttribute("data-page") == "doom") {
 }
 
 // The "?" safely handles cases where the check for the particular element would return null.
-document.getElementById('rand-color')?.addEventListener('click',changeBackgroundColor);
-document.getElementById('rand-color-home')?.addEventListener('click',changeBackgroundColor);
-document.getElementById('reset-color')?.addEventListener('click', resetBackgroundColor);
+//document.getElementById('rand-color')?.addEventListener('click',changeBackgroundColor);
+//document.getElementById('rand-color-home')?.addEventListener('click',changeBackgroundColor);
+//document.getElementById('reset-color')?.addEventListener('click', resetBackgroundColor);
 
 
 
@@ -18,7 +18,7 @@ let _onMove = null;
 
 const SPOT_SCOPE = document.getElementById('spotlight');
 
-setSpotRadius(400);
+setSpotRadius(300);
 setSpotHardness(0.3);
 enableSpotlight();
 
@@ -79,7 +79,8 @@ function saveTheme(bg) {
 }
 
 function loadTheme() {
-    return localStorage.getItem("theme.bg");
+    if (localStorage.getItem("theme.bg")) return localStorage.getItem("theme.bg")
+    else return getCSSVar("--bg")
 }
 
 // // Updated method of applying the theme rendered this obsolete

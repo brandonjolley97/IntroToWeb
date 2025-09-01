@@ -1,6 +1,6 @@
 :root{
-  --bg: white;
-  --fg: black;
+  --bg: rgb(27,38,59);
+  --fg: white;
 }
 
 html, body {
@@ -11,8 +11,8 @@ html, body {
 }
 
 section {
-  --bg: grey;
-  --fg: white;
+  --bg: rgb(65,90,119);
+  --fg: black;
   z-index: 500;
   background: var(--bg, grey); color: var(--fg, black);
 }
@@ -122,8 +122,8 @@ nav[aria-label="primary"] {
 }
 
 #nav-rail {
-  --tab-hover-bg: rgb(203, 203, 203);
-  --tab-hover-fg: black;
+  --tab-hover-bg: rgb(65,90,119);
+  --tab-hover-fg: white;
   --tab-active-bg: white;
   --tab-active-fg: black;
   --tab-border-width: 2px;
