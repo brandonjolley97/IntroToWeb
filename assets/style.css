@@ -14,7 +14,7 @@ section {
   --bg: rgb(65,90,119);
   --fg: black;
   z-index: 500;
-  background: var(--bg, grey); color: var(--fg, black);
+  background: var(--bg); color: var(--fg, black);
 }
 
 h1 {

@@ -79,8 +79,8 @@ function saveTheme(bg) {
 }
 
 function loadTheme() {
-    if (localStorage.getItem("theme.bg")) return localStorage.getItem("theme.bg")
-    else return getCSSVar("--bg")
+    if (localStorage.getItem("theme.bg")) return localStorage.getItem("theme.bg");
+    else return getCSSVar("--bg");
 }
 
 // // Updated method of applying the theme rendered this obsolete
